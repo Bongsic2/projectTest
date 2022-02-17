@@ -56,6 +56,18 @@ public class JFRAME extends JFrame {
 	public static List<String> abc = new ArrayList<String>();
 	public static List<String> set;
 
+	// 유저 랭킹 4명 변수
+	public static String rank1 = "";
+	public static String rank2 = "";
+	public static String rank3 = "";
+	public static String rank4 = "";
+
+	// 유저 랭킹 4명 라벨
+	public static JLabel rankLabel1;
+	public static JLabel rankLabel2;
+	public static JLabel rankLabel3;
+	public static JLabel rankLabel4;
+
 	// private JFrame frame;
 	private ArrayList<MusicInfo> list;
 	ImageIcon QuitBtn = new ImageIcon("../LineNo5_mh/src/view/buttonsGUI/QuitBtn1.png");
@@ -79,15 +91,24 @@ public class JFRAME extends JFrame {
 
 	public void getuserScore() {
 		uScore = scoreAll.userScore;
-
 		set = new ArrayList<>(uScore.keySet());
+		String[] str = new String[set.size()];
 
 		set.sort((o1, o2) -> uScore.get(o2) - uScore.get(o1));
-		for (String key : set) {
-			abc.add(String.format("ID : %s Score : %s", key, uScore.get(key)));
+
+		for (int i = 0; i < str.length; i++) {
+			str[i] = String.format("ID : %s - Score : %s", set.get(i), uScore.get(set.get(i)));
+			if (!rank1.contains(str[0])) {
+				rank1 = str[0];
+			} else if (!rank2.contains(str[1])) {
+				rank2 = str[1];
+			} else if (!rank3.contains(str[2])) {
+				rank3 = str[2];
+			} else if (!rank4.contains(str[3])) {
+				rank4 = str[3];
+			}
 
 		}
-
 	}
 
 	public void getuserlist() {
@@ -227,32 +248,48 @@ public class JFRAME extends JFrame {
 
 		// ---------------- 1등
 		JLabel iconRank1 = new JLabel();
-		iconRank1.setIcon(new ImageIcon("../projectTest/src/view/buttonsGUI/30rank1.png"));
-		iconRank1.setBounds(50, 30, 50, 50);
+		iconRank1.setIcon(new ImageIcon("../projectTest/src/view/buttonsGUI/1remove.png"));
+		iconRank1.setBounds(50, 40, 50, 50);
 		add(iconRank1);
+		// ---------------- 유저 이름과 점수
+		rankLabel1 = new JLabel(rank1);
+		rankLabel1.setFont(new Font("굴림", Font.PLAIN, 20));
+		rankLabel1.setForeground(Color.white);
+		rankLabel1.setBounds(130, 40, 265, 50);
+		add(rankLabel1);
 
 		// ---------------- 2등
+
 		JLabel iconRank2 = new JLabel();
-		iconRank2.setIcon(new ImageIcon("../projectTest/src/view/buttonsGUI/30rank2.png"));
-		iconRank2.setBounds(50, 70, 50, 50);
+		iconRank2.setIcon(new ImageIcon("../projectTest/src/view/buttonsGUI/2remove.png"));
+		iconRank2.setBounds(50, 100, 50, 50);
 		add(iconRank2);
+		// ---------------- 유저 이름과 점수
+		rankLabel2 = new JLabel(rank2);
+		rankLabel2.setFont(new Font("굴림", Font.PLAIN, 20));
+		rankLabel2.setForeground(Color.white);
+		rankLabel2.setBounds(130, 100, 265, 50);
+		add(rankLabel2);
 
 		// ---------------- 3등
+
 		JLabel iconRank3 = new JLabel();
-		iconRank3.setIcon(new ImageIcon("../projectTest/src/view/buttonsGUI/30rank3.png"));
-		iconRank3.setBounds(50, 110, 50, 50);
+		iconRank3.setIcon(new ImageIcon("../projectTest/src/view/buttonsGUI/3remove.png"));
+		iconRank3.setBounds(50, 160, 50, 50);
 		add(iconRank3);
+		// ---------------- 유저 이름과 점수
+		rankLabel3 = new JLabel(rank3);
+		rankLabel3.setFont(new Font("굴림", Font.PLAIN, 20));
+		rankLabel3.setForeground(Color.white);
+		rankLabel3.setBounds(130, 160, 265, 50);
+		add(rankLabel3);
 
-		// ---------------- 4등
-
-		// 결과 id,score목록 나타내기
-		JList userR = new JList(abc.toArray());
-		userR.setFont(new Font("굴림", Font.PLAIN, 30));
-		userR.setForeground(Color.white);
-		userR.setOpaque(true);
-		userR.setBackground(new Color(0, 0, 0, 100));
-		userR.setBounds(130, 35, 450, 210);
-		add(userR);
+		// ----------------4등 유저 이름과 점수
+		rankLabel4 = new JLabel(rank4);
+		rankLabel4.setFont(new Font("굴림", Font.PLAIN, 20));
+		rankLabel4.setForeground(Color.white);
+		rankLabel4.setBounds(130, 220, 265, 50);
+		add(rankLabel4);
 
 		// --- 결과 창에 USER 목록 나타내기 -------
 		JList userList = new JList(userlist.toArray());
