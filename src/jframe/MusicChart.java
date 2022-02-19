@@ -32,37 +32,41 @@ public class MusicChart extends JFrame {
 	public static int rankScore4 = 0;
 	ObservableList<PieChart.Data> pieChartData;
 
+	List<String> chartName;
+	List<Integer> chartScore;
+
 	public void initAndLoadWebView(JFXPanel pnCenter) {
 		Group group = new Group();
 		Scene scene = new Scene(group);
 		pnCenter.setScene(scene);
 		uScore = scoreAll.userScore;
-
-		List<String> list1 = new ArrayList<>();
-		List<Integer> list2 = new ArrayList<>();
+		uScore.put("ㅇㅇ", 3);
+		uScore.put("ww", 2);
+		chartName = new ArrayList<>();
+		chartScore = new ArrayList<>();
 
 		Iterator<String> iter = uScore.keySet().iterator();
 
 		for (int i = 0; i < uScore.size(); i++) {
 			iter.hasNext();
 			String key = iter.next();
-			list1.add(key);
+			chartName.add(key);
 			int score = uScore.get(key);
-			list2.add(score);
+			chartScore.add(score);
 		}
-		for (int i = 0; i < list1.size(); i++) {
-			if (!rankChart1.contains(list1.get(0))) {
-				rankChart1 = list1.get(0);
-				rankScore1 = list2.get(0);
-			} else if (!rankChart2.contains(list1.get(1))) {
-				rankChart2 = list1.get(1);
-				rankScore2 = list2.get(1);
-			} else if (!rankChart3.contains(list1.get(2))) {
-				rankChart3 = list1.get(2);
-				rankScore3 = list2.get(2);
-			} else if (!rankChart4.contains(list1.get(3))) {
-				rankChart4 = list1.get(3);
-				rankScore4 = list2.get(3);
+		for (int i = 0; i < chartName.size(); i++) {
+			if (!rankChart1.contains(chartName.get(0))) {
+				rankChart1 = chartName.get(0);
+				rankScore1 = chartScore.get(0);
+			} else if (!rankChart2.contains(chartName.get(1))) {
+				rankChart2 = chartName.get(1);
+				rankScore2 = chartScore.get(1);
+			} else if (!rankChart3.contains(chartName.get(2))) {
+				rankChart3 = chartName.get(2);
+				rankScore3 = chartScore.get(2);
+			} else if (!rankChart4.contains(chartName.get(3))) {
+				rankChart4 = chartName.get(3);
+				rankScore4 = chartScore.get(3);
 			}
 		}
 
@@ -79,8 +83,10 @@ public class MusicChart extends JFrame {
 	}
 
 	public MusicChart() {
+
 		setSize(800, 600);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		// setDefaultCloseOperation(EXIT_ON_CLOSE);
+		dispose();
 		JFXPanel pnCenter = new JFXPanel();
 		Platform.runLater(new Runnable() {
 			public void run() {
