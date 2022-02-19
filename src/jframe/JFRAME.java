@@ -53,7 +53,6 @@ public class JFRAME extends JFrame {
 	public static List<String> userlist = new ArrayList<String>();
 	public static String uri[] = new String[10];
 	public static HashMap<String, Integer> uScore;
-	public static List<String> abc = new ArrayList<String>();
 	public static List<String> set;
 
 	// 유저 랭킹 4명 변수
@@ -147,9 +146,17 @@ public class JFRAME extends JFrame {
 		setVisible(true);
 		setLayout(null);
 
+		// -------------------- 차트 --------------
 		JButton chartBtn = new JButton("차트");
 		chartBtn.setBounds(600, 70, 111, 82);
-		getContentPane().add(chartBtn);
+		chartBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				new MusicChart();
+
+			}
+		});
+		add(chartBtn);
 
 		// ----------------대기 버튼
 		JButton roomBtn = new JButton(waitingRoomBtn);
@@ -244,6 +251,7 @@ public class JFRAME extends JFrame {
 				endBtn.setIcon(QuitBtn);
 				endBtn.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
+
 		});
 
 		// ---------------- 1등
